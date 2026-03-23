@@ -43,12 +43,22 @@
 	
 	9. 각 사탕 무게가 20 이하라는 조건
 	=> 메모리 감당 가능할 듯함. 합 기반 DP로 풀어볼 만한 규모	
+	
+	10 합 관련 DP 문제 풀어보고 먼저 익숙해지기
+	  - 1463 1로 만들기
+	  - 9095 1,2,3 더하기
 */
 
 
 void Main()
 {	
 	var input = Console.ReadLine();
-	input.Dump();
+	var num = int.Parse(input);
+	var answer = DFS(num);
+	answer.Dump();
 }
 
+private int DFS(int index, inat a, int b, int c)
+{
+	return a;
+}
