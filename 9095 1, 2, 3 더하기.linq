@@ -7,8 +7,26 @@
 void Main()
 {
 	var (n, nums) = getInputs();	
-	n.Dump();
-	nums.Dump();
+	for (int i = 0; i < n; i++)
+	{
+		Console.WriteLine(solve(nums[i]));
+	}
+}
+
+private int solve(int n)
+{
+	var memo = new Dictionary<int,int>();
+	return F(n);
+	int F(int x)
+	{
+		if (x == 0) return 0;
+		if (x < 0) return 0;
+		
+		if (memo.ContainsKey(x)) return memo[x];
+		
+		memo[x] = F(x - 1) + F(x - 2) +F(x - 3);
+		return memo[x];
+	}
 }
 
 private (int, int[]) getInputs()
