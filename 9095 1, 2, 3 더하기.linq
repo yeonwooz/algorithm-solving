@@ -6,20 +6,20 @@
 
 void Main()
 {
-	var (n, nums) = getInputs();	
+	var (n, nums) = GetInputs();	
 	for (int i = 0; i < n; i++)
 	{
-		Console.WriteLine(solve(nums[i]));
+		Console.WriteLine(Solve(nums[i]));
 	}
 }
 
-private int solve(int n)
+int Solve(int n)
 {
 	var memo = new Dictionary<int,int>();
 	return F(n);
 	int F(int x)
 	{
-		if (x == 0) return 0;
+		if (x == 0) return 1;
 		if (x < 0) return 0;
 		
 		if (memo.ContainsKey(x)) return memo[x];
@@ -29,7 +29,7 @@ private int solve(int n)
 	}
 }
 
-private (int, int[]) getInputs()
+(int, int[]) GetInputs()
 {
 	var input = Console.ReadLine();	
 	var n = int.Parse(input);
@@ -42,11 +42,9 @@ private (int, int[]) getInputs()
 		if (input == "")
 			throw new Exception("input is empty");			
 		
-		var num = int.Parse(input);
+		var  num = int.Parse(input);
 		nums.Add(num);
 		i++;
 	}
 	return (n, nums.ToArray());
 }
-
-// You can define other methods, fields, classes and namespaces here
