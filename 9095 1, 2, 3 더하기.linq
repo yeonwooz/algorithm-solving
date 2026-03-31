@@ -4,47 +4,53 @@
   <IncludeAspNet>true</IncludeAspNet>
 </Query>
 
-void Main()
-{
-	var (n, nums) = GetInputs();	
-	for (int i = 0; i < n; i++)
-	{
-		Console.WriteLine(Solve(nums[i]));
-	}
-}
+using System;
+using System.Collections.Generic;
 
-int Solve(int n)
+public class Program
 {
-	var memo = new Dictionary<int,int>();
-	return F(n);
-	int F(int x)
+	public static void Main()
 	{
-		if (x == 0) return 1;
-		if (x < 0) return 0;
-		
-		if (memo.ContainsKey(x)) return memo[x];
-		
-		memo[x] = F(x - 1) + F(x - 2) +F(x - 3);
-		return memo[x];
+		var (n, nums) = getInputs();
+		for (int i = 0; i < n; i++)
+		{
+			Console.WriteLine(solve(nums[i]));
+		}
 	}
-}
 
-(int, int[]) GetInputs()
-{
-	var input = Console.ReadLine();	
-	var n = int.Parse(input);
-	var i = 0;		
-	var nums = new List<int>() {};
-	
-	while (i < n)
+	static int solve(int n)
 	{
-		input = Console.ReadLine();		
-		if (input == "")
-			throw new Exception("input is empty");			
-		
-		var  num = int.Parse(input);
-		nums.Add(num);
-		i++;
+		var memo = new Dictionary<int, int>();
+		return F(n);
+		int F(int x)
+		{
+			if (x == 0) return 1;
+			if (x < 0) return 0;
+
+			if (memo.ContainsKey(x)) return memo[x];
+
+			memo[x] = F(x - 1) + F(x - 2) + F(x - 3);
+			return memo[x];
+		}
 	}
-	return (n, nums.ToArray());
+
+	static (int, int[]) getInputs()
+	{
+		var input = Console.ReadLine();
+		var n = int.Parse(input);
+		var i = 0;
+		var nums = new List<int>() { };
+
+		while (i < n)
+		{
+			input = Console.ReadLine();
+			if (input == "")
+				throw new Exception("input is empty");
+
+			var num = int.Parse(input);
+			nums.Add(num);
+			i++;
+		}
+		return (n, nums.ToArray());
+	}
 }
