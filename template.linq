@@ -11,19 +11,19 @@ public class Program
 {
 	public static void Main()
 	{
-		var (n, nums) = getInputs();
+		var (n, nums) = GetInputs();
 		for (int i = 0; i < n; i++)
 		{
-			Console.WriteLine(solve(nums[i]));
+			Console.WriteLine(Solve(nums[i]));
 		}
 	}
 
-	static int solve(int n)
+	static int Solve(int n)
 	{
 		return 1;
 	}
 
-	static (int, int[]) getInputs()
+	static (int, int[]) GetInputs()
 	{
 		var input = Console.ReadLine();
 		var n = int.Parse(input);
