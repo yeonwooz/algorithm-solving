@@ -6,16 +6,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Program
 {
 	public static void Main()
 	{
-		var (n, nums) = GetInputs();
-		for (int i = 0; i < n; i++)
-		{
-			Console.WriteLine(Solve(nums[i]));
-		}
+		var (n, arr) = GetInputs();
+		arr.Dump();
 	}
 
 	static int Solve(int n)
@@ -23,23 +21,19 @@ public class Program
 		return 1;
 	}
 
-	static (int, int[]) GetInputs()
+	static (int, int[][]) GetInputs()
 	{
-		var input = Console.ReadLine();
-		var n = int.Parse(input);
-		var i = 0;
-		var nums = new List<int>() { };
+		string line;
+		while (string.IsNullOrWhiteSpace(line = Console.ReadLine())) { }
+		int N = int.Parse(line.Trim());
 
-		while (i < n)
+		int[][] arr = new int[N][];
+		for (int i = 0; i < N; i++)
 		{
-			input = Console.ReadLine();
-			if (input == "")
-				throw new Exception("input is empty");
-
-			var num = int.Parse(input);
-			nums.Add(num);
-			i++;
+			while (string.IsNullOrWhiteSpace(line = Console.ReadLine())) { }
+			arr[i] = line.Trim().Split().Select(int.Parse).ToArray();
 		}
-		return (n, nums.ToArray());
+
+		return (N, arr);
 	}
 }
