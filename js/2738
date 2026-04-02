@@ -1,0 +1,44 @@
+const readline = require('readline');
+
+function getInputs() {
+    return new Promise((resolve) => {
+        const rl = readline.createInterface({ input: process.stdin });
+        const lines = [];
+        rl.on('line', (l) => {
+            lines.push(l);
+        });
+
+        rl.on('close', () => {
+            const [n, m] = lines[0].split(' ').map(Number);
+            const firstElements = lines.slice(1, n + 1);
+            const secondElements = lines.slice(n + 1);
+
+            const aMatrix = makeMatrix(n, firstElements);
+            const bMatrix = makeMatrix(n, secondElements);
+            resolve({ n, m, aMatrix, bMatrix });
+        });
+    });
+}
+
+function makeMatrix(n, arr) {
+    const matrix = [];
+    for (let i = 0; i < n; i++) {
+        const elements = arr[i].split(' ').map(Number);
+        matrix.push(elements);
+    }
+    return matrix;
+}
+
+async function main() {
+    const { n, m, aMatrix, bMatrix } = await getInputs();
+    for (let i = 0; i < n; i++) {
+        let row = new Array(m);
+        for (let j = 0; j < m; j++) {
+            row[j] = aMatrix[i][j] + bMatrix[i][j];
+        }
+
+        console.log(row.join(' '));
+    }    
+}
+
+main();
