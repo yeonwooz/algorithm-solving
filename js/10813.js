@@ -13,9 +13,7 @@ function solve(N, M, swapTargets) {
     const arr = new Array(N).fill(0).map((_, i) => i + 1);
     for (let idx = 0; idx < M; idx++) {
         const [i, j] = swapTargets[idx];
-        const temp = arr[i - 1];
-        arr[i - 1] = arr[j - 1];
-        arr[j - 1] = temp;
+        [arr[i - 1], arr[j - 1]] = [arr[j - 1], arr[i - 1]];
     }
     return arr;
 }
