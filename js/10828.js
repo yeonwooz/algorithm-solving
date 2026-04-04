@@ -15,7 +15,6 @@ async function main() {
             case 'push':
                 topIdx++;
                 arr[topIdx] = num;
-                topNum = num;
                 break;
             case 'pop':
                 answers.push(topIdx === -1 ? -1 : arr[topIdx]);
