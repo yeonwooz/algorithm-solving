@@ -6,35 +6,39 @@ async function main() {
     const N = Number(inputs[0]);
     const cmds = inputs.slice(1);
 
-    const arr = [];
+    const answers = [];
+    const arr = new Array(N);
+    let topIdx = -1;
     for (let i = 0; i < N; i++) {
         const [cmd, num] = cmds[i];
         switch (cmd) {
             case 'push':
-                arr.push(num);
+                topIdx++;
+                arr[topIdx] = num;
+                topNum = num;
                 break;
             case 'pop':
-                if (arr.length === 0) {
-                    console.log(-1);
+                answers.push(topIdx === -1 ? -1 : arr[topIdx]);
+                if (topIdx >= 0) {
+                    topIdx--;
                 } else {
-                    console.log(arr.pop(num));
+                    topIdx = -1;
                 }
                 break;
             case 'size':
-                console.log(arr.length);
+                answers.push(topIdx + 1);
                 break;
             case 'empty':
-                const isEmpty = arr.length === 0;
-                console.log(isEmpty ? 1 : 0);
+                answers.push(topIdx === -1 ? 1 : 0);
                 break;
             case 'top':
-                const len = arr.length;
-                console.log(len === 0 ? -1 : arr[len - 1]);
+                answers.push(topIdx === -1 ? -1 : arr[topIdx]);
                 break;
             default:
                 continue;
         }
     }
+    console.log(answers.join('\n'));
 }
 
 async function getInputs() {
