@@ -6,8 +6,8 @@
 
 void Main()
 {
-	var l1 = BuildList(new[] { 2, 4, 3 });
-	var l2 = BuildList(new[] { 5, 6, 4 });
+	var l1 = BuildList(new[] { 9 });
+	var l2 = BuildList(new[] { 1,9,9,9,9,9,9,9,9,9 });
 
 	var solution = new Solution();
 	var result = solution.AddTwoNumbers(l1, l2);
